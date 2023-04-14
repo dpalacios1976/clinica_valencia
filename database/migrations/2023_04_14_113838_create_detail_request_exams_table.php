@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exam_groups', function (Blueprint $table) {
+        Schema::create('detail_request_exams', function (Blueprint $table) {
             $table->id();
-            $table->string('description',250)->comment('Descripción del grupo de examenes');
-            $table->integer('code')->comment('Código del Examen');
-            $table->integer('state')->default(1);
+            $table->boolean('required')->default(FALSE)->comment('Examen solicitado');
+            $table->foreignId('exams_id')->constrained('exams')->comment('Examen');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_groups');
+        Schema::dropIfExists('detail_request_exams');
     }
 };

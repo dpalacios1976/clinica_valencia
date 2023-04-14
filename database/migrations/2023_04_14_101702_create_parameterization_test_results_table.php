@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exam_groups', function (Blueprint $table) {
+        Schema::create('parameterization_test_results', function (Blueprint $table) {
             $table->id();
-            $table->string('description',250)->comment('Descripción del grupo de examenes');
-            $table->integer('code')->comment('Código del Examen');
+            $table->string('description',250)->comment('Descipción del resultado');
+            $table->string('unit_of_measure',20)->nullable()->comment('Unidad de medida Ej: %,g/dl, seg');
+            $table->foreignId('exam_groups_id')->constrained('exam_groups')->comment('Grupo de examenes');
             $table->integer('state')->default(1);
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_groups');
+        Schema::dropIfExists('parameterization_test_results');
     }
 };

@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exam_groups', function (Blueprint $table) {
-            $table->id();
-            $table->string('description',250)->comment('Descripción del grupo de examenes');
-            $table->integer('code')->comment('Código del Examen');
-            $table->integer('state')->default(1);
-            $table->timestamps();
+        Schema::table('diagnoses', function (Blueprint $table) {
+            $table->foreignId('orders_images_id')->nullable()->constrained('orders_images')->comment('Orden de Imagen');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_groups');
+        Schema::table('diagnoses', function (Blueprint $table) {
+            $table->dropColumn('orders_images_id');
+        });
     }
 };

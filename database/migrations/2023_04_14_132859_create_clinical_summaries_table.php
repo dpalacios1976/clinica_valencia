@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exam_groups', function (Blueprint $table) {
+        Schema::create('clinical_summaries', function (Blueprint $table) {
             $table->id();
-            $table->string('description',250)->comment('Descripción del grupo de examenes');
-            $table->integer('code')->comment('Código del Examen');
-            $table->integer('state')->default(1);
+            $table->text('observation')->comment('Observación del resumen clínico');
+            $table->foreignId('orders_images_id')->constrained('orders_images')->comment('Orden del estudio');
+            $table->foreignId('msp_forms_id')->constrained('msp_forms')->comment('Formulario MSP');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_groups');
+        Schema::dropIfExists('clinical_summaries');
     }
 };

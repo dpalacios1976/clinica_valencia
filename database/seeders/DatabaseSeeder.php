@@ -55,6 +55,10 @@ class DatabaseSeeder extends Seeder
         $this->call(TariffsSeeder::class);
         $this->call(TariffDetailSeeder::class);
         $this->call(MedicinesSeeder::class);
-
+        $this->call(ExamGroupsSeeder::class);
+        $this->call(ExamsSeeder::class);
+        $this->call(ParameterizationTestResultsSeeder::class);
+        $this->call(ImagesSeeder::class);
+        $this->call(UltrasoundDataSeeder::class);
     }
 }

@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExamGroups extends Model
+class Images extends Model
 {
     use HasFactory;
     protected $fillable = [
         'description',
-        'state',
+        'state'
     ];
-
-    public function scopeActivo($query)
-    {
-        $query->where('state', 1);
-    }
 }
